@@ -13,7 +13,11 @@ import androidx.compose.ui.unit.dp
 import com.mrayushbajpai.statforge.ui.viewmodel.StatViewModel
 
 @Composable
-fun HomeScreen(viewModel: StatViewModel, onNavigateToQuests: () -> Unit) {
+fun HomeScreen(
+    viewModel: StatViewModel,
+    onNavigateToQuests: () -> Unit,
+    onNavigateToStats: () -> Unit
+) {
     val totalXp by viewModel.totalXp.collectAsState()
 
     Column(
@@ -33,8 +37,18 @@ fun HomeScreen(viewModel: StatViewModel, onNavigateToQuests: () -> Unit) {
             style = MaterialTheme.typography.headlineMedium
         )
         Spacer(modifier = Modifier.height(32.dp))
-        Button(onClick = onNavigateToQuests) {
+        Button(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp),
+            onClick = onNavigateToQuests
+        ) {
             Text("Go to Quests")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp),
+            onClick = onNavigateToStats
+        ) {
+            Text("View Stats")
         }
     }
 }
